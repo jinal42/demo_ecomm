@@ -228,9 +228,7 @@ def user_profile(request):
             #   profile.save()
 
       profile_form = ProfileForm(request.POST)
-           
-
-              
+         
 
       if request.method == "POST":
               user_form = UserForm(request.POST)
@@ -312,14 +310,7 @@ def get_my_category(request):
 
       print("🚀 ~ file: views.py ~ line 294 ~ all_post", all_post)
 
-      # results = MyItem.objects.filter(item_category__contains=id)
-
-      # i = MyCategory.objects.filter(category=all_post).order_by('id')
-      # print("🚀 ~ file: views.py ~ line 315 ~ results", i)
-
-      # i=MyItem.objects.all(pk=id)
-      # print("🚀 ~ file: views.py ~ line 314 ~ i", i)
-      
+     
 
       return render(request,'ecommerce/index.html',{'page_obj':all_post})
       # return render(request,'ecommerce/demo.html',{'all_post':all_post})
@@ -334,13 +325,5 @@ def get_my_category_id(request, id):
       print("------------------------",id )
       filter_items= MyItem.objects.filter(item_category=id)
       print(filter_items)
-      # results = MyItem.objects.filter(item_category__contains=id)
-
-      # i = MyCategory.objects.filter(category=all_post).order_by('id')
-      # print("🚀 ~ file: views.py ~ line 315 ~ results", i)
-
-      # i=MyItem.objects.all(pk=id)
-      # print("🚀 ~ file: views.py ~ line 314 ~ i", i)
-      
 
       return render(request,'ecommerce/myitem.html',{'filter_items':filter_items})
