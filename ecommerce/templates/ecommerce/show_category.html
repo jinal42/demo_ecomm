@@ -3,7 +3,7 @@
 {% load  static %}
 
 	{% block body %}
-            {% for c in all_category %}
+          <!--  {% for c in all_category %}
 
                   <h2>{{c.title}}</h2>
                   {{c.desc}}<br><br>
@@ -11,7 +11,7 @@
 
             {% endfor %}
 
-
+          -->
 
 
  <section id="advertisement">
@@ -145,7 +145,7 @@
                                                       <div class="overlay-content">
                                                             <h2>{{c.price}}</h2>
                                                             <p>Easy Polo Black Edition</p>
-                                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                            <a href="{% url 'add_cart' c.id%}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                                       </div>
                                                 </div>
                                           </div>

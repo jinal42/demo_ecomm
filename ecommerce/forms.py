@@ -26,7 +26,7 @@ class User1Form(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserReg
-        fields = ['phone','gender']
+        fields = ['phone','gender','user_type']
 
 # class MyForm(forms.ModelForm):
     

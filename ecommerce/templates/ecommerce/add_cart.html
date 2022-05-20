@@ -1,15 +1,29 @@
 {% extends 'ecommerce/base.html' %}
-{% load  static %} 
+{% load  static %}
 
-	{% block body %}
-	<section id="cart_items">
+{% block body %}
+     <!-- {% for c in filter_items %}
+            {{c.title}}
+            {{c.price}}
+
+            {% if c.item_image %}
+            <img src="{{ c.item_image.url }}" alt="" /> 
+          {% endif %}
+     -->
+      {% endfor %}
+
+
+      <section id="cart_items">
 		<div class="container">
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
 				  <li><a href="#">Home</a></li>
 				  <li class="active">Shopping Cart</li>
+				  <li class="active-right"> Save</li>
+
 				</ol>
 			</div>
+			
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
@@ -23,9 +37,41 @@
 						</tr>
 					</thead>
 					<tbody>
+               {% for c in filter_items %}
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="{% static 'ecommerce/images/cart/one.png' %}" alt=""></a>
+                        {% if c.item_image %}
+                           <img src="{{ c.item_image.url }}" alt="" /> 
+                        {% endif %}							
+                     </td>
+							<td class="cart_description">
+								<h4>{{c.title}} </h4>
+								<p>{{c.desc}}</p>
+
+							</td>
+							<td class="cart_price">
+								<p>{{c.price}}</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<a class="cart_quantity_up" href="{% url 'add_to_cart' c.id %}"> + </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+									<a class="cart_quantity_down" href="	"> - </a>
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">$59</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+               {% endfor %}
+
+
+						<tr>
+							<td class="cart_product">
+								<a href=""><img src="{% static 'ecommerce/images/cart/two.png' %}" alt=""></a>
 							</td>
 							<td class="cart_description">
 								<h4><a href="">Colorblock Scuba</a></h4>
@@ -48,42 +94,7 @@
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
-
-					
-						{% for c in filter_items %}
-
-						<tr>
-
-						<td class="cart_product">
-								{% if c.item_image %}
-								<a href=""><img src="{{ c.item_image.url}}" alt=""></a>
-
-								{% endif %}
-							</td>
-							<td class="cart_description">
-								<h4>{{c.title}}</h4>
-								{{c.desc}}
-								
-							</td>
-							<td class="cart_price">
-								<p>{{c.price}}</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-        {% endfor %}
-
+						
 					</tbody>
 				</table>
 			</div>
@@ -166,5 +177,5 @@
 			</div>
 		</div>
 	</section><!--/#do_action-->
+{% endblock body %}
 
-	{% endblock body %}

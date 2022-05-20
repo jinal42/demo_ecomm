@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Home | E-Shopper</title>
-    <link href="{% static 'ecommerce/css/bootstrap.min.css' %} " rel="stylesheet">
+    <link href="{% static 'ecommerce/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'ecommerce/css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'ecommerce/css/prettyPhoto.css' %}" rel="stylesheet">
     <link href="{% static 'ecommerce/css/price-range.css' %}" rel="stylesheet">
@@ -58,7 +58,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="ecommerce/index.html"><img src="ecommerce/images/home/logo.png" alt="" /></a>
+							<a href="ecommerce/index.html"><img src="{% static 'ecommerce/images/home/logo.png' %}" alt="" /></a>
 						</div>
 						<div class="btn-group pull-right">
 							<div class="btn-group">
@@ -135,19 +135,10 @@
 
                               <li class="dropdown"><a href="#">404<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                          <li><a href="{% url 'show_category' %}">All ategory Product</a></li>
+                                          <li><a href="{% url 'show_category' %}">All Category Product</a></li>
 
-                                          <li><a href="{% url 'search' %}">Jens</a></li>
-                                          <li><a href="{% url 'prod_details' %}">T-Shirt</a></li> 
-                                          <li><a href="{% url 'login_view' %}">Saree</a></li> 
                                     </ul>
-                              </li> 
-
-
-
-
-
-
+                              </li>
 
 
 
@@ -159,6 +150,7 @@
 
                                                   <li class="dropdown"><a href="{% url 'get_my_category' %}">Menu<i class="fa fa-angle-down"></i></a>
                                                       <ul role="menu" class="sub-menu">
+                                                            <li><a href="{% url 'show_category' %}">All Category Product</a></li>
                                                       {% for c in page_obj %}
                                                           <li><a href="{% url 'get_my_category_id' c.id %}"</a>{{c.category}}</li>
                                                             {% comment %} <li>{{c.category}}</li> {% endcomment %}
@@ -179,9 +171,7 @@
                                                       </ul>
                                                       </l>
                                                     </li> {% endcomment %}
-                                                  
-
-
+                                          
 
                                     
 
@@ -196,8 +186,6 @@
 						</div>
 					</div>
                         -->
-
-
 
 
 
@@ -222,12 +210,12 @@
 
 
 
-
+{% block js %}{% endblock js %}
 
 
 	
 
- {% block body %}{% endblock body %}
+ {% block body %} {% endblock body %}
 
 
 <footer id="footer"><!--Footer-->
@@ -388,11 +376,11 @@
       </div>
       
 </footer><!--/Footer-->
-<script src="ecommerce/js/jquery.js"></script>
-<script src="ecommerce/js/bootstrap.min.js"></script>
-<script src="ecommerce/js/jquery.scrollUp.min.js"></script>
-<script src="ecommerce/js/price-range.js"></script>
-<script src="ecommerce/js/jquery.prettyPhoto.js"></script>
-<script src="ecommerce/js/main.js"></script>
+<script src="{% static 'ecommerce/js/jquery.js' %}"></script>
+<script src="{% static 'ecommerce/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'ecommerce/js/jquery.scrollUp.min.js' %}"></script>
+<script src="{% static 'ecommerce/js/price-range.js' %}"></script>
+<script src="{% static 'ecommerce/js/jquery.prettyPhoto.js' %}"></script>
+<script src="{% static 'ecommerce/js/main.js' %}"></script>
 </body>
 </html>

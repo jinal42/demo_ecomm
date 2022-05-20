@@ -49,6 +49,11 @@ urlpatterns = [
     path('get_category_id/<int:id>', views.get_my_category_id,name='get_my_category_id'),  
     path('show/',views.show,name='show'),
 
+    path('add_cart/<int:id>',views.add_cart,name='add_cart'),
+    path('add_to_cart/<int:id>',views.add_to_cart,name='add_to_cart'),
+
+
+
 ]
 
 if settings.DEBUG:

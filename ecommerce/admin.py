@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import  MyCategory, MyItem, User1,Category,Item,All_Category
+from .models import  Add_Cart, MyCategory, MyItem, User1,Category,Item,All_Category
 # from .models import   UserProfile
 from django.contrib.auth.forms import UserCreationForm
 from .models import  UserReg
@@ -25,7 +25,7 @@ class User1Admin(admin.ModelAdmin):
 
 @admin.register(UserReg)
 class UserAdmin(admin.ModelAdmin):
- list_display=('id','user','phone','gender')
+ list_display=('id','user','phone','gender','user_type')
 
 
 
@@ -40,3 +40,4 @@ class PostAdmin1(admin.ModelAdmin):
 admin.site.register(MyCategory)
 
 admin.site.register(MyItem)
+admin.site.register(Add_Cart)

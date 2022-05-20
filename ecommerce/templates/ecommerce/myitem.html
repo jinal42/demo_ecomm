@@ -126,7 +126,7 @@
                                                              {% if c.item_image %}
                                                                <img src="{{ c.item_image.url }}" alt="" /> 
                                                              {% endif %}
-                                                            <h2>{{c.title}}</h2>
+                                                            <h2>{{c.title}}</h2>    
                                                             <p>{{c.desc}}</p>
                                                            <p> <b>{{c.price}}</b></p>
                                                            
@@ -136,7 +136,7 @@
                                                             <div class="overlay-content">
                                                                   <h2>{{c.price}}</h2>
                                                                   <p>Easy Polo Black Edition</p>
-                                                                  <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                                  <a href="{% url 'add_cart' c.id%}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                                             </div>
                                                       </div>
                                                 </div>

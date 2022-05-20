@@ -27,6 +27,7 @@ class UserReg(models.Model):
       user = models.OneToOneField( User,on_delete=models.CASCADE)
       phone=models.CharField(max_length=12,blank=True)
       gender=models.CharField(max_length=15,default='female')
+      user_type=models.CharField(max_length=10,blank=True)
 
 class Category(models.Model):
     title=models.CharField(max_length=100)
@@ -59,6 +60,10 @@ class MyItem(models.Model):
     # item_category =models.TextField(max_length=50)
     item_image=models.ImageField(upload_to='images',default="/images/girl1.jpg")
     item_category= models.ForeignKey(MyCategory, null=True, on_delete=models.CASCADE)
+      
+class Add_Cart(models.Model):
+    title= models.ForeignKey(MyItem, null=True, on_delete=models.CASCADE)
+    quantity=models.IntegerField(null=True,default=1)
 
 
 def __str__(self):  
