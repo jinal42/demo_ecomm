@@ -45,7 +45,10 @@ urlpatterns = [
     path('demo/',views.demo_view,name='demo'),
     path('show_category/',views.show_view,name='show_category'),
     path('search/',views.search,name='search'),
-    path('get_category/', views.get_my_category,name='get_my_category'),    
+
+    path('get_category/', views.home,name='get_my_category'),  
+    # path('get_category/', views.get_my_category,name='get_my_category'),    
+  
     path('get_category_id/<int:id>', views.get_my_category_id,name='get_my_category_id'),  
     path('show/',views.show,name='show'),
 

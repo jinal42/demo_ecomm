@@ -138,13 +138,18 @@
                                                       <h2>{{c.title}}</h2>
                                                       <p>{{c.desc}}</p>
                                                      <p> <b>{{c.price}}</b></p>
-                                                     
                                                       <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                                 </div>
                                                 <div class="product-overlay">
                                                       <div class="overlay-content">
                                                             <h2>{{c.price}}</h2>
                                                             <p>Easy Polo Black Edition</p>
+                                                            <span id="dicpr{{post.id}}" class="divpr">
+											<button id="pr{{c.id}}" class="btn btn-default cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+											</span>
+
+                                                            <button id="{{c.id}}" class="btn btn-default cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+
                                                             <a href="{% url 'add_cart' c.id%}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                                       </div>
                                                 </div>
@@ -195,4 +200,48 @@
 </section>
 {% endblock body %}
 
+{% block js %}
+	<script>
+            updateCart(cart);
 
+		console.log('working...');
+
+		if(localStorage.getItem('cart')==null)
+		{
+			var cart= {};
+		}
+		else
+		{
+			cart=JSON.parse(localStorage.getItem('cart'));
+                  document.getElementById('cart').innerHTML=Object.keys(cart).length;
+
+
+		}
+            
+		$('.cart').click(function(){
+			console.log('clicked');
+			var idstr = this.id.toString();
+			console.log(idstr);
+			if (cart[idstr] !=undefined){
+				cart[idstr] = cart[idstr] + 1;	
+			}
+			else{
+				cart[idstr] = 1;
+			}
+			console.log(cart);
+			localStorage.setItem('cart',JSON.stringify(cart));
+                  document.getElementById('cart').innerHTML=Object.keys(cart).length;
+
+		});	
+
+            function updateCart(cart) {
+                  for (var item in cart) {
+                      document.getElementById('div' + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'>-</button> <span id='val" + item + "''>" + cart[item] + "</span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
+                  }
+                  localStorage.setItem('cart', JSON.stringify(cart));
+                  document.getElementById('cart').innerHTML = Object.keys(cart).length;
+                  console.log(cart);
+              }   
+	</script>
+		
+{% endblock  %} 

@@ -231,13 +231,17 @@
 										<h2>{{post.title}}</h2>
                               <p>{{post.desc}}</p>
                               <p> <b>{{post.price}}</b></p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+										<button id="{{post.id}}" class="btn btn-default cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
 											<h2>{{post.price}}</h2>
 											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+
+											<span id="dicpr{{post.id}}" class="divpr">
+											<button id="pr{{post.id}}" class="btn btn-default cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+											</span>
+
 										</div>
 									</div>
 								</div>
@@ -644,3 +648,8 @@
 	</section>
 	
 	{% endblock body %}
+
+
+
+
+

@@ -89,9 +89,20 @@
 							<ul class="nav navbar-nav">
 								<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
 								<li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-								<li><a href="{% url 'login_view' %}"><i class="fa fa-lock"></i> Login</a></li>
+								{% comment %} <li><a> <i class="fa fa-shopping-cart"></i> Cart (<span id="cart"> 0 </span>)</a></li> {% endcomment %}
+
+
+      								<li><a href="{% url 'login_view' %}"><i class="fa fa-lock"></i> Login</a></li>
                                                 <li><a href="{% url 'user_reg' %}"><i class="fa fa-star"></i> Register</a></li>
+
+                                                {% comment %} <li><button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" >
+                                                      <i class="fa fa-shopping-cart"></i> Cart (<span id="cart"> 0 </span>)</button></li> {% endcomment %}
+
+                                                <li><button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Bottom popover">
+                                                        <i class="fa fa-shopping-cart"></i> Cart (<span id="cart"> 0 </span>)
+                                                    </button></li>
+
+                                                    
 							</ul>
 						</div>
 					</div>
@@ -119,6 +130,8 @@
                                         <li><a href="{% url 'shop' %}">Products</a></li>
 										<li><a href="{% url 'prod_details' %}">Product Details</a></li> 
 										<li><a href="">Checkout</a></li> 
+                                                            <li><a>Cart (<span id="cart">0</span>)</a></li>
+
 										<li><a href="{% url 'cart' %}">Cart</a></li> 
 										<li><a href="{% url 'login_view' %}">Login</a></li> 
                                     </ul>
@@ -210,7 +223,6 @@
 
 
 
-{% block js %}{% endblock js %}
 
 
 	
@@ -382,5 +394,51 @@
 <script src="{% static 'ecommerce/js/price-range.js' %}"></script>
 <script src="{% static 'ecommerce/js/jquery.prettyPhoto.js' %}"></script>
 <script src="{% static 'ecommerce/js/main.js' %}"></script>
+
+{% block js %}
+	<script>
+            updateCart(cart);
+
+		console.log('working...');
+
+		if(localStorage.getItem('cart')==null)
+		{
+			var cart= {};
+		}
+		else
+		{
+			cart=JSON.parse(localStorage.getItem('cart'));
+                  document.getElementById('cart').innerHTML=Object.keys(cart).length;
+
+
+		}
+            
+		$('.cart').click(function(){
+			console.log('clicked');
+			var idstr = this.id.toString();
+			console.log(idstr);
+			if (cart[idstr] !=undefined){
+				cart[idstr] = cart[idstr] + 1;	
+			}
+			else{
+				cart[idstr] = 1;
+			}
+			console.log(cart);
+			localStorage.setItem('cart',JSON.stringify(cart));
+                  document.getElementById('cart').innerHTML=Object.keys(cart).length;
+
+		});	
+
+            function updateCart(cart) {
+                  for (var item in cart) {
+                      document.getElementById('div' + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'>-</button> <span id='val" + item + "''>" + cart[item] + "</span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
+                  }
+                  localStorage.setItem('cart', JSON.stringify(cart));
+                  document.getElementById('cart').innerHTML = Object.keys(cart).length;
+                  console.log(cart);
+              }   
+	</script>
+		
+{% endblock  %} 
 </body>
 </html>
