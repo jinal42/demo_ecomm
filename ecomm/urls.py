@@ -21,6 +21,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from ecommerce import views
+from django.contrib.auth import views as auth_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -54,6 +56,8 @@ urlpatterns = [
 
     path('add_cart/<int:id>',views.add_cart,name='add_cart'),
     path('add_to_cart/<int:id>',views.add_to_cart,name='add_to_cart'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='home'),name='logout'),
+ 
 
 
 

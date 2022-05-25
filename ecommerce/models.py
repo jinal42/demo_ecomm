@@ -62,7 +62,8 @@ class MyItem(models.Model):
     item_category= models.ForeignKey(MyCategory, null=True, on_delete=models.CASCADE)
       
 class Add_Cart(models.Model):
-    title= models.ForeignKey(MyItem, null=True, on_delete=models.CASCADE)
+    title= models.ForeignKey(MyItem, null=True, on_delete=models.CASCADE)   
+    user= models.ForeignKey(UserReg, null=True, on_delete=models.CASCADE)
     quantity=models.IntegerField(null=True,default=1)
 
 

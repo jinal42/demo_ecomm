@@ -16,7 +16,7 @@
 
  <section id="advertisement">
       <div class="container">
-            <img src="ecommerce/images/shop/advertisement.jpg" alt="" />
+            <img src="{% static 'ecommerce/images/shop/advertisement.jpg' %}" alt="" />
       </div>
 </section>
 
@@ -144,13 +144,24 @@
                                                       <div class="overlay-content">
                                                             <h2>{{c.price}}</h2>
                                                             <p>Easy Polo Black Edition</p>
-                                                            <span id="dicpr{{post.id}}" class="divpr">
+
+                                                            {% if request.user.is_authenticated %}
+
+                                                            <span class="storefront_add_to_cart">
+                                                                  <a href="{% url 'add_to_cart1' c.id %}">[Add to Cart]</a>
+                                                              </span>
+                                                            {% endif %}
+
+                                                            {% if request.user.is_authenticated %}
+
+                                                            <span id="divpr{{c.id}}" class="divpr">
 											<button id="pr{{c.id}}" class="btn btn-default cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</span>
+										</span>
+                                                            {% endif %}
 
-                                                            <button id="{{c.id}}" class="btn btn-default cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                                            {% comment %} <button id="{{c.id}}" class="btn btn-default cart"><i class="fa fa-shopping-cart"></i>Add to cart</button> {% endcomment %}
 
-                                                            <a href="{% url 'add_cart' c.id%}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                            <a href="{% url 'add_cart' c.id%}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart12</a>
                                                       </div>
                                                 </div>
                                           </div>
@@ -202,7 +213,6 @@
 
 {% block js %}
 	<script>
-            updateCart(cart);
 
 		console.log('working...');
 
@@ -228,20 +238,14 @@
 			else{
 				cart[idstr] = 1;
 			}
+
 			console.log(cart);
 			localStorage.setItem('cart',JSON.stringify(cart));
                   document.getElementById('cart').innerHTML=Object.keys(cart).length;
 
 		});	
 
-            function updateCart(cart) {
-                  for (var item in cart) {
-                      document.getElementById('div' + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'>-</button> <span id='val" + item + "''>" + cart[item] + "</span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
-                  }
-                  localStorage.setItem('cart', JSON.stringify(cart));
-                  document.getElementById('cart').innerHTML = Object.keys(cart).length;
-                  console.log(cart);
-              }   
+            
 	</script>
 		
 {% endblock  %} 

@@ -29,3 +29,46 @@ $(document).ready(function(){
 	});
 });
 
+
+	console.log('working...');
+
+	if(localStorage.getItem('cart')==null)
+	{
+		var cart= {};
+	}
+	else
+	{
+		cart=JSON.parse(localStorage.getItem('cart'));
+		document.getElementById('cart').innerHTML=Object.keys(cart).length;
+		updateCart(cart);
+	}
+				
+	$('.cart').click(function()
+	{
+	console.log('clicked');
+	var idstr = this.id.toString();
+	console.log(idstr);
+		if (cart[idstr] !=undefined){
+			cart[idstr] = cart[idstr] + 1;	
+		}
+		else{
+			cart[idstr] = 1;
+		}
+
+	console.log(cart);
+	localStorage.setItem('cart',JSON.stringify(cart));
+	document.getElementById('cart').innerHTML=Object.keys(cart).length;
+
+
+});	
+	function updateCart(cart) {
+		for (var item in cart) {
+				document.getElementById('div' + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'> - </button> <span id='val" + item + "''>" + cart[item] + "</span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
+		}
+			localStorage.setItem('cart', JSON.stringify(cart));
+			document.getElementById('cart').innerHTML = Object.keys(cart).length;
+			console.log(cart);
+		}   
+	
+
+	

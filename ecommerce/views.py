@@ -31,6 +31,7 @@ def home(request):
       page_obj=pagi.get_page(page_number)
       # print("🚀 ~ file: views.py ~ line 93 ~ page_obj", page_obj)
       return render(request,'ecommerce/index.html',{'page_obj':page_obj})
+
       # return render(request,'ecommerce/index.html')
 
 def shop(request):
@@ -392,6 +393,12 @@ def add_to_cart(request,id):
 
       get_quantity= Add_Cart.objects.filter(title_id=id).first()
       print("---------- quantity  ---------- ", get_quantity.quantity)
+
+      
+  
+
+
+
 
 
       # q=Add_Cart.objects.values('quantity')
