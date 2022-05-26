@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .forms import User1Form, UserForm
 from .models import Add_Cart, Category, Item, MyCategory, MyItem, User1, UserReg
 from django.core.paginator import Paginator
@@ -215,10 +215,10 @@ def login_view(request):
                   # return redirect("profile",uname=user)
 
                   return render(request,'ecommerce/welcome.html',{'uname':user})
-                  # return render(request,'ecommerce/index.html',{'uname':user})
+                  #return render(request,'ecommerce/index.html',{'uname':user})
 
             else:
-                  return HttpResponseRedirect('/demo/')
+                  return HttpResponseRedirect('/login/')
      
       # print('login......')
       return render(request,'ecommerce/login.html')
@@ -375,6 +375,75 @@ def add_cart(request,id):
 
 
 
+
+
+def add__to__cart(request):
+      user=request.user
+      product_id=request.GET.get('prod_id')
+      print("----- product_id -----", product_id)
+
+      all_items = MyItem.objects.get(id=product_id)
+
+      print(all_items, "===============================")
+      print("----- user -----",user)
+      print("----- product -----",product_id)
+
+      # Add_Cart(title=product,user=user).save()
+      cart = Add_Cart.objects.create(user=user,title=all_items)
+      cart.save()
+      return redirect('/CART/')
+      # return render(request,'ecommerce/CART.html')
+
+
+
+def show_cart(request):
+      if request.user.is_authenticated:
+            user=request.user
+            cart = Add_Cart.objects.filter(user=user)
+            print("----- user -----",user)
+            print("----- cart -----",cart)
+
+            amount=0.0
+            shipping_amount=100.0
+            total_amount=0.0
+            cart_product=[p for p in Add_Cart.objects.all() if p.user == user]
+            print("---------- cart_product ----------",cart_product )
+
+            if cart_product:
+                  for p in cart_product:
+                        tempamt=(p.quantity * p.title.price)
+                        amount+=tempamt
+                        total_amount = amount + shipping_amount
+
+                        print("----- tempamt -----",tempamt)
+                        print("----- amount -----",amount)
+                        print("----- total_amount -----",total_amount)
+
+
+
+            return render(request,'ecommerce/CART.html',{'carts':cart,'total_amount':total_amount,'amount':amount})
+
+
+
+def CART(request):
+      filter_items= MyItem.objects.all()
+      # q=MyItem.objects.select_related(Add_Cart).filter(cart__title_id__icontains=id)
+      # print("🚀 ~ file: views.py ~ line 45 ~ q", q)
+      print("🚀 ~ file: views.py ~ line 340 ~ filter_items", filter_items)                            
+
+      
+      return render(request, 'ecommerce/CART.html', {"filter_items":filter_items})
+      # return render(request,'ecommerce/cart.html')
+
+
+
+
+
+
+
+
+
+
 # def add_cart(request,id):
 
 #       print("------------------------",id )
@@ -427,3 +496,4 @@ def add_to_cart(request,id):
       # print(filter_items)
       # return render(request,'ecommerce/add_cart.html',{'filter_items':filter_items})
       return HttpResponse("add to cart....")
+      

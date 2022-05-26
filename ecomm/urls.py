@@ -58,6 +58,11 @@ urlpatterns = [
     path('add_to_cart/<int:id>',views.add_to_cart,name='add_to_cart'),
     path('logout/', auth_views.LogoutView.as_view(next_page='home'),name='logout'),
  
+    path('add-to-cart',views.add__to__cart,name='add-to-cart'),
+    path('show_cart',views.show_cart,name='show_cart'),
+    path('CART/',views.show_cart    ,name='CART'),
+
+
 
 
 

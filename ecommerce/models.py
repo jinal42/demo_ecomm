@@ -56,14 +56,14 @@ class MyCategory(models.Model):
 class MyItem(models.Model):
     title=models.CharField(max_length=100)
     desc=models.TextField(max_length=500)
-    price=models.CharField(max_length=100)
+    price=models.FloatField(max_length=100)
     # item_category =models.TextField(max_length=50)
     item_image=models.ImageField(upload_to='images',default="/images/girl1.jpg")
     item_category= models.ForeignKey(MyCategory, null=True, on_delete=models.CASCADE)
       
 class Add_Cart(models.Model):
     title= models.ForeignKey(MyItem, null=True, on_delete=models.CASCADE)   
-    user= models.ForeignKey(UserReg, null=True, on_delete=models.CASCADE)
+    user= models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     quantity=models.IntegerField(null=True,default=1)
 
 

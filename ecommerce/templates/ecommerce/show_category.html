@@ -137,20 +137,19 @@
                                                        {% endif %}
                                                       <h2>{{c.title}}</h2>
                                                       <p>{{c.desc}}</p>
-                                                     <p> <b>{{c.price}}</b></p>
+                                                     <p> <b>Rs.{{c.price}}</b></p>
                                                       <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                                 </div>
                                                 <div class="product-overlay">
                                                       <div class="overlay-content">
-                                                            <h2>{{c.price}}</h2>
+                                                            <h2>Rs. {{c.price}}</h2>
                                                             <p>Easy Polo Black Edition</p>
 
-                                                            {% if request.user.is_authenticated %}
-
-                                                            <span class="storefront_add_to_cart">
-                                                                  <a href="{% url 'add_to_cart1' c.id %}">[Add to Cart]</a>
-                                                              </span>
-                                                            {% endif %}
+                                                      <form action="/add-to-cart">
+                                                            <input type="hidden"  name="prod_id" value={{c.id}} id="prod_id">
+                                                            <button type="submit" class="btn btn-default">Add to cart-cart</button>
+                                                      </form>
+ 
 
                                                             {% if request.user.is_authenticated %}
 
