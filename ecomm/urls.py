@@ -60,7 +60,9 @@ urlpatterns = [
  
     path('add-to-cart',views.add__to__cart,name='add-to-cart'),
     path('show_cart',views.show_cart,name='show_cart'),
-    path('CART/',views.show_cart    ,name='CART'),
+    path('CART/',views.show_cart,name='CART'),
+    path('pluscart/',views.plus_cart,name='pluscart'),
+
 
 
 

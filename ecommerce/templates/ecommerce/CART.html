@@ -23,6 +23,50 @@
 						</tr>
 					</thead>
 					<tbody>
+						
+
+					
+                        {% for c in carts %}
+                       
+						<tr>
+                           
+
+						<td class="cart_product">
+						 {% if c.title.item_image %} 
+								 <a href=""><img src="{{c.title.item_image.url}}" alt=""></a> 
+
+							{% endif %}  
+							</td>
+							<td class="cart_description">
+								 <h4>{{c.title.title}}</h4>
+								{{c.title.desc}} 
+								{{c.title.id}} 
+
+                            <p> Quantity : {{c.quantity}}</p> 
+
+
+
+							</td>
+							<td class="cart_price">
+								 <p>Rs. {{c.title.price}}</p> 
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<a class="cart_quantity_up" href="" pid={{c.title.id}}> + </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+									<a class="cart_quantity_down" href="" pid={{c.title.id}}> - </a>
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">{{tempamt}}</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+							</td>
+                            
+						</tr>
+                        {% endfor %}
+
 						<tr>
 							<td class="cart_product">
 								<a href=""><img src="{% static 'ecommerce/images/cart/one.png' %}" alt=""></a>
@@ -48,46 +92,6 @@
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
-
-					
-                        {% for c in carts %}
-                       
-						<tr>
-                           
-
-						<td class="cart_product">
-						 {% if c.title.item_image %} 
-								 <a href=""><img src="{{c.title.item_image.url}}" alt=""></a> 
-
-							{% endif %}  
-							</td>
-							<td class="cart_description">
-								 <h4>{{c.title.title}}</h4>
-								{{c.title.desc}} 
-                            <p>  {{c.quantity}}</p> 
-
-
-
-							</td>
-							<td class="cart_price">
-								 <p>Rs. {{c.title.price}}</p> 
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">{{tempamt}}</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-                            
-						</tr>
-                        {% endfor %}
 
 					</tbody>
 				</table>
@@ -172,3 +176,6 @@
 	</section><!--/#do_action-->
 
 	{% endblock body %}
+
+	{% block js %}
+	{% endblock %}

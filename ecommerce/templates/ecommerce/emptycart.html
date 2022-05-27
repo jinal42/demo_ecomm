@@ -1,0 +1,38 @@
+{% extends 'ecommerce/base.html' %}
+{% load  static %} 
+
+	{% block body %}
+	<section id="cart_items">
+		<div class="container">
+
+
+			
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">You have no product no Your Cart</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td >
+								<a href=""><img src="{% static 'ecommerce/images/cart/empty_cart.png' %}" alt="" align="center"></a>
+							</td>
+						
+						
+						</tr>
+
+					
+                       
+
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+
+
+	{% endblock body %}

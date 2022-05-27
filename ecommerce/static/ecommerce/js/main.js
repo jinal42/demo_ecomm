@@ -62,13 +62,42 @@ $(document).ready(function(){
 
 });	
 	function updateCart(cart) {
-		for (var item in cart) {
-				document.getElementById('div' + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'> - </button> <span id='val" + item + "''>" + cart[item] + "</span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
-		}
+		// for (var item in cart) {
+		// 		document.getElementById('div' + item).innerHTML = "<button id='minus" + item + "' class='btn btn-primary minus'> - </button> <span id='val" + item + "''>" + cart[item] + "</span> <button id='plus" + item + "' class='btn btn-primary plus'> + </button>";
+		// }
 			localStorage.setItem('cart', JSON.stringify(cart));
 			document.getElementById('cart').innerHTML = Object.keys(cart).length;
 			console.log(cart);
 		}   
+	$('.cart_quantity_up').click(function(){
+		var id=$(this).attr("pid").toString();
+		var eml=$(this).parentNodechildren[2]
+		console.log("--- id ---",id);
+		$.ajax({
+			type: "GET",
+			url: "/pluscart",
+			data: {
+				prod_id:id
+			},
+			success: function (data){
+				eml.innerText = data.quantity
+				console.log("--- data ---",data)	
+				console.log("--- success ---",success)			 
+		 
+			}
+		})
+		
+				 
+ 
+	})
+	
+	
+	$('.cart_quantity_down').click(function(){
+		var id=$(this).attr("pid").toString();
+		console.log(id);
+		
+	})
+
 	
 
 	
